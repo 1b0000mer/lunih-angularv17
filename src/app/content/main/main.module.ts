@@ -5,10 +5,12 @@ import { MainRoutingModule } from './main-routing.module';
 import { HomeComponent } from './home/home.component';
 import { MainLayoutModule } from '../../layout/main/main-layout.module';
 import { IconModule, IconSetService } from '@coreui/icons-angular';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,

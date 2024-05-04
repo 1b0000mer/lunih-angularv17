@@ -1,1 +1,26 @@
-<p>main-header works!</p>
+<c-navbar expand="lg" class="bg-body-tertiary">
+  <c-container class="px-4" fluid>
+    <a cNavbarBrand href="../" target="_blank">
+      LUNIH
+    </a>
+    <button [cNavbarToggler]="collapseRef"></button>
+    <div #collapseRef="cCollapse" navbar cCollapse>
+      <c-navbar-nav class="me-auto mb-2 mb-lg-0">
+        <c-nav-item>
+          <a cNavLink routerLink="/home" routerLinkActive="active">Home</a>
+        </c-nav-item>
+        <c-nav-item>
+          <a cNavLink routerLink="/about" routerLinkActive="active">About</a>
+        </c-nav-item>
+        <c-nav-item>
+          <a cNavLink routerLink="/management" routerLinkActive="active">Management</a>
+        </c-nav-item>
+      </c-navbar-nav>
+      <c-navbar-nav class="ms-auto">
+        <c-nav-item>
+          <a cNavLink routerLink="/login" routerLinkActive="active">Login</a>
+        </c-nav-item>
+      </c-navbar-nav>
+    </div>
+  </c-container>
+</c-navbar>

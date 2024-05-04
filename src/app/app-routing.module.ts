@@ -1,9 +1,7 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { Page404Component } from './content/page404/page404.component';
+import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './layout/main/main-layout/main-layout.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./content/main/main.module').then(m => m.MainModule)
@@ -22,14 +20,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: Page404Component
+        loadComponent: () => import('./content/page404/page404.component').then(m => m.Page404Component)
       }
     ]
   }
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
