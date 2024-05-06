@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { navItems } from '../nav';
 
 @Component({
   selector: 'app-management-layout',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './management-layout.component.scss'
 })
 export class ManagementLayoutComponent {
-
+  public navItems = navItems;
 }

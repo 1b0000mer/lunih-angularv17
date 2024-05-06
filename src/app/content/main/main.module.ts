@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
 import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 import { MainLayoutModule } from '../../layout/main/main-layout.module';
 import { IconModule, IconSetService } from '@coreui/icons-angular';
-import { AboutComponent } from './about/about.component';
+import { cilListNumbered, cilPaperPlane } from '@coreui/icons';
 
 @NgModule({
   declarations: [
@@ -22,4 +23,13 @@ import { AboutComponent } from './about/about.component';
     IconSetService
   ]
 })
-export class MainModule { }
+export class MainModule { 
+  constructor(
+    public iconSet: IconSetService
+  ) {
+    iconSet.icons = { 
+      cilListNumbered, 
+      cilPaperPlane 
+    }
+  }
+}

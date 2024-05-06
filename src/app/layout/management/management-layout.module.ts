@@ -1,23 +1,149 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ManagementSidebarComponent } from './management-sidebar/management-sidebar.component';
+import { CommonModule, NgStyle, NgTemplateOutlet } from '@angular/common';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ManagementHeaderComponent } from './management-header/management-header.component';
 import { ManagementFooterComponent } from './management-footer/management-footer.component';
 import { ManagementLayoutComponent } from './management-layout/management-layout.component';
-import { RouterModule } from '@angular/router';
+import {
+  AvatarComponent,
+  BadgeComponent,
+  BreadcrumbRouterComponent,
+  ButtonDirective,
+  ContainerComponent,
+  DropdownComponent,
+  DropdownDividerDirective,
+  DropdownHeaderDirective,
+  DropdownItemDirective,
+  DropdownMenuDirective,
+  DropdownToggleDirective,
+  HeaderNavComponent,
+  HeaderTogglerDirective,
+  NavItemComponent,
+  NavLinkDirective,
+  ProgressBarDirective,
+  ProgressComponent,
+  ShadowOnScrollDirective,
+  SidebarBrandComponent,
+  SidebarComponent,
+  SidebarFooterComponent,
+  SidebarHeaderComponent,
+  SidebarNavComponent,
+  SidebarToggleDirective,
+  SidebarTogglerDirective,
+  TextColorDirective,
+  ThemeDirective,
+} from '@coreui/angular';
 
-
+import { NgScrollbar } from 'ngx-scrollbar';
+import {
+  IconDirective,
+  IconModule,
+  IconSetService,
+} from '@coreui/icons-angular';
+import {
+  cifLv,
+  cifUs,
+  cilAccountLogout,
+  cilBell,
+  cilBook,
+  cilCheck,
+  cilContrast,
+  cilEducation,
+  cilEnvelopeOpen,
+  cilFactory,
+  cilGrid,
+  cilGroup,
+  cilInstitution,
+  cilLanguage,
+  cilList,
+  cilListNumbered,
+  cilMenu,
+  cilMoon,
+  cilPaperPlane,
+  cilSettings,
+  cilSitemap,
+  cilSpeedometer,
+  cilSun,
+  cilUser,
+} from '@coreui/icons';
+import { sygnet } from '../../icons/sygnet';
+import { logo } from '../../icons/logo';
 
 @NgModule({
   declarations: [
-    ManagementSidebarComponent,
     ManagementHeaderComponent,
     ManagementFooterComponent,
-    ManagementLayoutComponent
+    ManagementLayoutComponent,
   ],
   imports: [
     CommonModule,
-    RouterModule
-  ]
+    RouterOutlet,
+    ContainerComponent,
+    SidebarComponent,
+    SidebarHeaderComponent,
+    SidebarBrandComponent,
+    SidebarNavComponent,
+    SidebarFooterComponent,
+    SidebarTogglerDirective,
+    ShadowOnScrollDirective,
+    ButtonDirective,
+    NgScrollbar,
+    IconModule,
+    HeaderTogglerDirective,
+    SidebarToggleDirective,
+    IconDirective,
+    HeaderNavComponent,
+    NavItemComponent,
+    NavLinkDirective,
+    RouterLink,
+    RouterLinkActive,
+    NgTemplateOutlet,
+    BreadcrumbRouterComponent,
+    ThemeDirective,
+    DropdownComponent,
+    DropdownToggleDirective,
+    TextColorDirective,
+    AvatarComponent,
+    DropdownMenuDirective,
+    DropdownHeaderDirective,
+    DropdownItemDirective,
+    BadgeComponent,
+    DropdownDividerDirective,
+    ProgressBarDirective,
+    ProgressComponent,
+    NgStyle,
+  ],
+  providers: [IconSetService],
 })
-export class ManagementLayoutModule { }
+export class ManagementLayoutModule {
+  constructor(public iconSet: IconSetService) {
+    iconSet.icons = {
+      sygnet,
+      logo,
+      cilListNumbered,
+      cilPaperPlane,
+      cilSpeedometer,
+      cilMenu,
+      cilBell,
+      cilList,
+      cilEnvelopeOpen,
+      cilGrid,
+      cilInstitution,
+      cilSitemap,
+      cilBook,
+      cilGroup,
+      cilEducation,
+      cilFactory,
+      cilUser,
+      cilCheck,
+      cilSun,
+      cilMoon,
+      cilContrast,
+      cilAccountLogout,
+      cilSettings,
+      cilLanguage,
+      cifLv,
+      cifUs
+    };
+  }
+}

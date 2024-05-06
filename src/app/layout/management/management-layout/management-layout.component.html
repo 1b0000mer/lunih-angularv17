@@ -1,4 +1,48 @@
-<app-management-sidebar></app-management-sidebar>
-<app-management-header></app-management-header>
-<router-outlet></router-outlet>
-<app-management-footer></app-management-footer>
+<div>
+  <!-- sidebar -->
+  <c-sidebar
+    #sidebar1="cSidebar"
+    class="d-print-none sidebar sidebar-fixed border-end"
+    colorScheme="dark"
+    id="sidebar1"
+    visible>
+
+    <c-sidebar-header class="border-bottom">
+      <c-sidebar-brand [routerLink]="[]">
+        <svg [class]="{icon: false}" cIcon class="sidebar-brand-full" height="32" name="logo" title="Lunih Logo"></svg>
+        <svg cIcon class="sidebar-brand-narrow" height="32" name="sygnet" title="Lunih Logo"></svg>
+      </c-sidebar-brand>
+    </c-sidebar-header>
+
+    <ng-scrollbar #scrollbar="ngScrollbar" class="overflow" pointerEventsMethod="scrollbar" visibility="hover">
+      <c-sidebar-nav #overflow [navItems]="navItems" dropdownMode="close" compact />
+    </ng-scrollbar>
+    
+    @if (!sidebar1.narrow) {
+      <c-sidebar-footer cSidebarToggle="sidebar1" class="border-top d-none d-lg-flex pe-on" toggle="unfoldable">
+        <button cSidebarToggler></button>
+      </c-sidebar-footer>
+    }
+  </c-sidebar>
+
+  <!-- main-layout -->
+  <div class="wrapper d-flex flex-column min-vh-100">
+    
+    <!-- header -->
+    <app-management-header 
+      [cShadowOnScroll]="'sm'" 
+      class="mb-4 d-print-none header header-sticky p-0 shadow-sm" 
+      position="sticky" 
+      sidebarId="sidebar1" />
+      
+    <!-- body -->
+    <div class="body flex-grow-1">
+      <c-container class="h-auto px-4" breakpoint="lg">
+        <router-outlet />
+      </c-container>
+    </div>
+
+    <!-- footer -->
+    <app-management-footer />
+  </div>
+</div>

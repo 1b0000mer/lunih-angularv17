@@ -7,7 +7,7 @@ body {
   @include ltr-rtl('padding-left', var(--cui-sidebar-occupy-start, 0));
   @include ltr-rtl('padding-right', var(--cui-sidebar-occupy-end, 0));
   will-change: auto;
-  @include transition(padding 0.15s);
+  @include transition(padding .15s);
 }
 
 .header > .container-fluid,
