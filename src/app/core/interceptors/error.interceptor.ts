@@ -21,19 +21,18 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         // Handle the error here
         switch (error.status) {
-          case 400:
           case 401:
           case 403:
           case 500:
             this.toast.error(error.error.message);
             break;
-          default:
+          case 0:
             this.toast.error(error.statusText)
             break;
         }
         
         //throw error as per requirement
-        return throwError(() => error);
+        return throwError(() => error.error);
       })
     );
   }

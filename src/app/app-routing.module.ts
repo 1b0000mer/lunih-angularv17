@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './layout/main/main-layout/main-layout.component';
+import { adminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -8,7 +9,8 @@ export const routes: Routes = [
   },
   {
     path: 'management',
-    loadChildren: () => import('./content/management/management.module').then(m => m.ManagementModule)
+    loadChildren: () => import('./content/management/management.module').then(m => m.ManagementModule),
+    canActivate: [adminGuard]
   },
   {
     path: 'login',

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticateService } from '../../../core/services/auth/authenticate.service';
 import { Router } from '@angular/router';
 import { UrlConstant } from '../../../core/constants/url.constant';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthenticateService,
-    private router: Router
+    private router: Router,
+    private toast: ToastrService
   ) {
     this.createForm();
   }
@@ -31,22 +33,33 @@ export class LoginComponent {
   }
 
   doLogin() {
-    this.isLoading = true;
+    this.setLoading(true);
     if (this.loginForm.valid) {
       this.authService.doLoginForm(this.loginForm.value)
-      .subscribe(res => {
-        this.authService.setAuthData(res);
-        if (this.authService.checkRoleAdmin()) {
-          this.router.navigateByUrl(UrlConstant.ROUTE.MANAGEMENT.MANAGEMENT);
-        } else {
-          this.router.navigateByUrl(UrlConstant.ROUTE.MAIN.HOME);
+      .subscribe({
+        next: (res) => {
+          this.authService.setAuthData(res);
+          if (this.authService.checkRoleAdmin()) {
+            this.router.navigateByUrl(UrlConstant.ROUTE.MANAGEMENT.MANAGEMENT);
+          } else {
+            this.router.navigateByUrl(UrlConstant.ROUTE.MAIN.HOME);
+          }
+          this.setLoading(false);
+          this.toast.success('Welcome back!');
+        },
+        error: (err) => {
+          this.setLoading(false); 
+          this.toast.error(err.message);
         }
-        this.isLoading = false;
-      }, () => this.isLoading = false)
+      })
     }
     else {
-      this.isLoading = false;
+      this.setLoading(false);
     }
+  }
+  
+  setLoading(value: boolean) {
+    this.isLoading = value
   }
 
 }
