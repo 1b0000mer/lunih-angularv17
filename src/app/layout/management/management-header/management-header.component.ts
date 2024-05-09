@@ -34,10 +34,10 @@ export class ManagementHeaderComponent {
   };
 
   setLang(langName: string) {
-    localStorage.setItem('lang', langName);
+    localStorage.setItem('language', langName);
   }
 
   getLang() {
-    return localStorage.getItem('lang') ?? 'en';
+    return localStorage.getItem('language') ?? 'en';
   }
 }

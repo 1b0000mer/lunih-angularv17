@@ -9,6 +9,8 @@ import { ManagementModule } from './content/management/management.module';
 import { provideRouter, RouterModule, withEnabledBlockingInitialNavigation, withInMemoryScrolling, withRouterConfig, withViewTransitions } from '@angular/router';
 import { DropdownModule, SidebarModule } from '@coreui/angular';
 import { IconSetService } from '@coreui/icons-angular';
+import { CoreModule } from './core/core.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,14 @@ import { IconSetService } from '@coreui/icons-angular';
     BrowserModule,
     MainModule,
     ManagementModule,
+    CoreModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true
+    }),
   ],
   providers: [
     provideRouter(routes,
