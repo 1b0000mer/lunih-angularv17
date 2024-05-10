@@ -4,7 +4,7 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { MainHeaderComponent } from './main-header/main-header.component';
 import { MainFooterComponent } from './main-footer/main-footer.component';
 import { RouterModule } from '@angular/router';
-import { ButtonDirective, CollapseDirective, DropdownModule, FooterModule, GridModule, NavbarModule, NavModule } from '@coreui/angular';
+import { ButtonDirective, CollapseDirective, FooterModule, GridModule, NavbarModule, NavModule } from '@coreui/angular';
 
 
 

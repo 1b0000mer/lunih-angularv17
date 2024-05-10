@@ -1,1 +1,51 @@
-<p>faculty-list works!</p>
+<c-card>
+  <c-card-header>
+    <c-row>
+      <c-col [sm]="5">
+        <c-input-group>
+          <input cFormControl [(ngModel)]="searchValue" (keyup.enter)="getDataPaging(true)"/>
+          <button cButton (click)="getDataPaging(true)">SEARCH_BTN</button>
+        </c-input-group>
+      </c-col>
+      <c-col [sm]="7" class="d-md-block">
+        <button cButton class="float-end" (click)="openModal(formModal)"><svg cIcon name="cilPlus"></svg>ADD</button>
+      </c-col>
+    </c-row>
+  </c-card-header>
+  <c-card-body>
+    <table cTable>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">FACULTY_NAME_EN</th>
+          <th scope="col">FACULTY_NAME_LV</th>
+          <th scope="col" class="text-center">STATUS</th>
+          <th scope="col" class="text-center">ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let faculty of listFaculty.data; let i = index">
+          <td scope="row">{{faculty.id}}</td>
+          <td>{{faculty.nameEn}}</td>
+          <td>{{faculty.nameLv}}</td>
+          <td class="text-center">
+            <c-badge (click)="onChangeStatus(faculty.id!)" class="pe-on" color="success" *ngIf="faculty.status">ACTIVE</c-badge>
+            <c-badge (click)="onChangeStatus(faculty.id!)" class="pe-on" color="danger" *ngIf="!faculty.status">INACTIVE</c-badge>
+          </td>
+          <td class="text-center">
+            <button (click)="openModal(formModal, faculty)" color="success" size="sm" shape="rounded-pill" cButton><svg cIcon name="cilPencil"></svg></button>
+            <div class="vr h-100 mx-2 text-body"></div>
+            <button (click)="onDelete(faculty.id!)" color="danger" size="sm" shape="rounded-pill" cButton><svg cIcon name="cilTrash"></svg></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </c-card-body>
+  <c-card-footer>
+    <app-table-paginate [pageConfig]="listFaculty" (pageChange)="pageChange($event)"/>
+  </c-card-footer>
+</c-card>
+
+<ng-template #formModal>
+  <app-faculty-form [modalData]="modalData" (closeModal)="closeModal($event)" />
+</ng-template>

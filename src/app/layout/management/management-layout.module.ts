@@ -38,36 +38,7 @@ import { NgScrollbar } from 'ngx-scrollbar';
 import {
   IconDirective,
   IconModule,
-  IconSetService,
 } from '@coreui/icons-angular';
-import {
-  cifLv,
-  cifUs,
-  cilAccountLogout,
-  cilBell,
-  cilBook,
-  cilCheck,
-  cilContrast,
-  cilEducation,
-  cilEnvelopeOpen,
-  cilFactory,
-  cilGrid,
-  cilGroup,
-  cilInstitution,
-  cilLanguage,
-  cilList,
-  cilListNumbered,
-  cilMenu,
-  cilMoon,
-  cilPaperPlane,
-  cilSettings,
-  cilSitemap,
-  cilSpeedometer,
-  cilSun,
-  cilUser,
-} from '@coreui/icons';
-import { sygnet } from '../../icons/sygnet';
-import { logo } from '../../icons/logo';
 
 @NgModule({
   declarations: [
@@ -112,38 +83,6 @@ import { logo } from '../../icons/logo';
     ProgressBarDirective,
     ProgressComponent,
     NgStyle,
-  ],
-  providers: [IconSetService],
+  ]
 })
-export class ManagementLayoutModule {
-  constructor(public iconSet: IconSetService) {
-    iconSet.icons = {
-      sygnet,
-      logo,
-      cilListNumbered,
-      cilPaperPlane,
-      cilSpeedometer,
-      cilMenu,
-      cilBell,
-      cilList,
-      cilEnvelopeOpen,
-      cilGrid,
-      cilInstitution,
-      cilSitemap,
-      cilBook,
-      cilGroup,
-      cilEducation,
-      cilFactory,
-      cilUser,
-      cilCheck,
-      cilSun,
-      cilMoon,
-      cilContrast,
-      cilAccountLogout,
-      cilSettings,
-      cilLanguage,
-      cifLv,
-      cifUs
-    };
-  }
-}
+export class ManagementLayoutModule { }

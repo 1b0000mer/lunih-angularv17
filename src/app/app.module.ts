@@ -11,6 +11,10 @@ import { DropdownModule, SidebarModule } from '@coreui/angular';
 import { IconSetService } from '@coreui/icons-angular';
 import { CoreModule } from './core/core.module';
 import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from './content/shared/shared.module';
+import { cilListNumbered, cilPaperPlane, cilSpeedometer, cilMenu, cilBell, cilList, cilEnvelopeOpen, cilGrid, cilInstitution, cilSitemap, cilBook, cilGroup, cilEducation, cilFactory, cilUser, cilCheck, cilSun, cilMoon, cilContrast, cilAccountLogout, cilSettings, cilLanguage, cifLv, cifUs, cilLockLocked, cilChevronDoubleLeft, cilChevronDoubleRight, cilChevronLeft, cilChevronRight, cilPlus, cilPencil, cilTrash } from '@coreui/icons';
+import { logo } from './icons/logo';
+import { sygnet } from './icons/sygnet';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
     MainModule,
     ManagementModule,
     CoreModule,
+    SharedModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     ToastrModule.forRoot({
@@ -43,8 +48,49 @@ import { ToastrModule } from 'ngx-toastr';
     ),
     importProvidersFrom(SidebarModule, DropdownModule),
     IconSetService,
-    { provide: LOCALE_ID, useValue: 'en-US' }
+    { provide: LOCALE_ID, useValue: 'en-US' },
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(public iconSet: IconSetService) {
+    iconSet.icons = {
+      sygnet,
+      logo,
+      cilListNumbered,
+      cilPaperPlane,
+      cilSpeedometer,
+      cilMenu,
+      cilBell,
+      cilList,
+      cilEnvelopeOpen,
+      cilGrid,
+      cilInstitution,
+      cilSitemap,
+      cilBook,
+      cilGroup,
+      cilEducation,
+      cilFactory,
+      cilUser,
+      cilCheck,
+      cilSun,
+      cilMoon,
+      cilContrast,
+      cilAccountLogout,
+      cilSettings,
+      cilLanguage,
+      cilLockLocked,
+      cilChevronDoubleLeft, 
+      cilChevronLeft,
+      cilChevronRight,
+      cilChevronDoubleRight,
+      cilPlus,
+      cilPencil,
+      cilTrash,
+      cifLv,
+      cifUs
+    };
+  }
+
+ }

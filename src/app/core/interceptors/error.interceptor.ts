@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -8,9 +8,11 @@ import {
 } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { AuthenticateService } from '../services/auth/authenticate.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
+  private authSvc = inject(AuthenticateService);
 
   constructor(
     private toast: ToastrService
@@ -23,8 +25,11 @@ export class ErrorInterceptor implements HttpInterceptor {
         switch (error.status) {
           case 401:
           case 403:
+            this.authSvc.doLogout();
+            this.toast.error('Unauthorized!');
+            break;
           case 500:
-            this.toast.error(error.error.message);
+            this.toast.error('Server Error!');
             break;
           case 0:
             this.toast.error(error.statusText)

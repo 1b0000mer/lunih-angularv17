@@ -1,0 +1,45 @@
+<form cForm class="row g-3">
+  <c-col xs="auto">
+    <c-pagination align="center">
+      <li cPageItem>
+        <button 
+          cButton 
+          cPageLink
+          (click)="setPage(1)"
+          [disabled]="pageConfig.currentPage === 1"
+        >
+            <svg cIcon name="cilChevronDoubleLeft"></svg>
+          </button>
+        
+      </li>
+      <li cPageItem>
+        <button cButton 
+          cPageLink
+          (click)="setPage(pageConfig.currentPage - 1)"
+          [disabled]="pageConfig.currentPage === 1"
+        >
+          <svg cIcon name="cilChevronLeft"></svg>
+        </button>
+      </li>
+      <li cPageItem *ngFor="let index of getPageIndices()">
+        <button [active]="pageConfig.currentPage === index" cButton cPageLink (click)="setPage(index)">{{ index }}</button>
+      </li>
+      <li cPageItem>
+        <button cButton 
+          cPageLink
+          (click)="setPage(pageConfig.currentPage + 1)"
+          [disabled]="pageConfig.currentPage === pageConfig.totalPage">
+            <svg cIcon name="cilChevronRight"></svg>
+        </button>
+      </li>
+      <li cPageItem>
+        <button cButton 
+          cPageLink
+          (click)="setPage(pageConfig.totalPage!)"
+          [disabled]="pageConfig.currentPage === pageConfig.totalPage">
+            <svg cIcon name="cilChevronDoubleRight"></svg>
+        </button>
+      </li>
+    </c-pagination>
+  </c-col>
+</form>

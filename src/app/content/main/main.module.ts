@@ -18,18 +18,6 @@ import { cilListNumbered, cilPaperPlane } from '@coreui/icons';
     MainRoutingModule,
     MainLayoutModule,
     IconModule
-  ],
-  providers: [
-    IconSetService
   ]
 })
-export class MainModule { 
-  constructor(
-    public iconSet: IconSetService
-  ) {
-    iconSet.icons = { 
-      cilListNumbered, 
-      cilPaperPlane 
-    }
-  }
-}
+export class MainModule { }

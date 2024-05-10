@@ -5,8 +5,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 
 import { ButtonDirective, CardBodyComponent, CardComponent, CardGroupComponent, ColComponent, ContainerComponent, FormControlDirective, FormDirective, FormFeedbackComponent, InputGroupComponent, InputGroupTextDirective, RowComponent, SpinnerComponent, TextColorDirective } from '@coreui/angular';
-import { IconDirective, IconModule, IconSetService } from '@coreui/icons-angular';
-import { cilLockLocked, cilUser } from '@coreui/icons';
+import { IconDirective, IconModule } from '@coreui/icons-angular';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -37,18 +36,5 @@ import { ReactiveFormsModule } from '@angular/forms';
     SpinnerComponent,
     FormFeedbackComponent
   ],
-  providers: [
-    IconSetService
-  ]
 })
-export class AuthModule {
-
-  constructor(
-    public iconSet: IconSetService
-  ) {
-    iconSet.icons = { 
-      cilUser,
-      cilLockLocked
-    }
-  }
- }
+export class AuthModule { }
