@@ -5,8 +5,7 @@ import { MainRoutingModule } from './main-routing.module';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { MainLayoutModule } from '../../layout/main/main-layout.module';
-import { IconModule, IconSetService } from '@coreui/icons-angular';
-import { cilListNumbered, cilPaperPlane } from '@coreui/icons';
+import { IconModule } from '@coreui/icons-angular';
 
 @NgModule({
   declarations: [
