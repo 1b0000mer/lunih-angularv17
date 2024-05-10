@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  keyGoogle: '',
+  serverUrl: 'https://lunih-lunih-3a16d800.koyeb.app/',
 };

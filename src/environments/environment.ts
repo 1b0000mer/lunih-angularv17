@@ -3,12 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:4444',
-  rootUrl: 'http://localhost:4444',
+  production: true,
   
   //for hosting
   serverUrl: 'https://lunih-lunih-3a16d800.koyeb.app/',
-  
-  keyGoogle: '152431320998-ef7ao58llq4osjvbn6o5nbtb1vh8o3li.apps.googleusercontent.com',
 };
