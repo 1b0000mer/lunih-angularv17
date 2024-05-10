@@ -7,7 +7,7 @@
             <c-card-body>
               <form cForm (ngSubmit)="doLogin()" [formGroup]="loginForm" novalidate>
                 <h1>Login</h1>
-                <p class="text-body-secondary">Sign In to your account</p>
+                <p class="text-body-secondary">{{langData[langCode]['LOG_IN_BODY']}}</p>
                 
                 <c-input-group class="mb-3" *ngIf="loginForm.controls['email'] as ctrl">
                   <span cInputGroupText>
@@ -17,7 +17,7 @@
                   <input
                     formControlName="email" 
                     cFormControl 
-                    placeholder="Email" 
+                    placeholder="{{langData[langCode]['USER_NAME_TIP']}}" 
                     [valid]="
                       ctrl.touched && ctrl.valid 
                       ? undefined 
@@ -28,7 +28,7 @@
                     
                     <c-form-feedback *ngIf="ctrl.invalid" [valid]="!ctrl.invalid">
                       <ng-container *ngIf="ctrl.errors as errors">
-                        <div *ngIf="errors['required']">Email is required</div>
+                        <div *ngIf="errors['required']">{{langData[langCode]['USER_NAME_ERR']}}</div>
                       </ng-container>
                     </c-form-feedback>
                 
@@ -42,7 +42,7 @@
                   <input
                     formControlName="password"
                     cFormControl
-                    placeholder="Password"
+                    placeholder="{{langData[langCode]['PASSWORD_TIP']}}"
                     type="password"
                     [valid]="
                       ctrl.touched && ctrl.valid 
@@ -55,7 +55,7 @@
 
                   <c-form-feedback *ngIf="ctrl.invalid" [valid]="!ctrl.invalid">
                     <ng-container *ngIf="ctrl.errors as errors">
-                      <div *ngIf="errors['required']">Password is required</div>
+                      <div *ngIf="errors['required']">{{langData[langCode]['PASSWORD_ERR']}}</div>
                     </ng-container>
                   </c-form-feedback>
 
@@ -65,12 +65,12 @@
                   <c-col xs="6">
                     <button cButton class="m-1" type="submit">
                       <c-spinner [(hidden)]="!isLoading" aria-hidden="true" size="sm" />
-                      Login
+                      {{langData[langCode]['LOG_IN']}}
                     </button>
                   </c-col>
                   <c-col class="text-right" xs="6">
                     <button cButton class="px-0" color="link">
-                      Forgot password?
+                      {{langData[langCode]['FORGOR']}}
                     </button>
                   </c-col>
                 </c-row>

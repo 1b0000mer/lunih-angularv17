@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, NgStyle } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { FacultyRoutingModule } from './faculty-routing.module';
 import { FacultyListComponent } from './faculty-list/faculty-list.component';
 import { FacultyFormComponent } from './faculty-form/faculty-form.component';
-import { ManagementModule } from '../../management.module';
 import {
   ContainerComponent,
   RowComponent,
@@ -31,7 +30,6 @@ import {
   ModalFooterComponent,
   ModalHeaderComponent,
   ModalTitleDirective,
-  ThemeDirective,
 } from '@coreui/angular';
 
 import { NzModalModule } from 'ng-zorro-antd/modal';
@@ -44,41 +42,43 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FacultyRoutingModule,
-    ManagementModule,
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-
+    
     ContainerComponent,
     RowComponent,
     ColComponent,
+
     CardGroupComponent,
-    TextColorDirective,
     CardComponent,
     CardHeaderComponent,
     CardBodyComponent,
     CardFooterComponent,
-    FormDirective,
-    InputGroupComponent,
-    InputGroupTextDirective,
-    FormControlDirective,
-    ButtonDirective,
-    NgStyle,
-    SpinnerComponent,
-    FormFeedbackComponent,
-    TableModule,
-    TableDirective,
-    BadgeComponent,
-    IconModule,
+    
     ModalComponent,
     ModalHeaderComponent,
     ModalTitleDirective,
-    ThemeDirective,
-    ButtonCloseDirective,
     ModalBodyComponent,
     ModalFooterComponent,
+    NzModalModule,
+    
+    TextColorDirective,
+    FormDirective,
+    FormControlDirective,
+    FormFeedbackComponent,
+    InputGroupComponent,
+    InputGroupTextDirective,
+    
+    ButtonDirective,
+    ButtonCloseDirective,
+    SpinnerComponent,
+    BadgeComponent,
+    
+    TableModule,
+    TableDirective,
+    IconModule,
 
-    NzModalModule
   ],
 })
 export class FacultyModule {}

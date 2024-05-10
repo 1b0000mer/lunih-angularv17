@@ -4,6 +4,7 @@ import { AuthenticateService } from '../../../core/services/auth/authenticate.se
 import { Router } from '@angular/router';
 import { UrlConstant } from '../../../core/constants/url.constant';
 import { ToastrService } from 'ngx-toastr';
+import { LanguageConstant } from '../../../core/constants/language.constant';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+
+  langData: Record<string, Record<string, string>> = LanguageConstant;
+  langCode = localStorage.getItem('language') ?? 'en';
 
   isLoading: boolean = false;
 
@@ -45,7 +49,7 @@ export class LoginComponent {
             this.router.navigateByUrl(UrlConstant.ROUTE.MAIN.HOME);
           }
           this.setLoading(false);
-          this.toast.success('Welcome back!');
+          this.toast.success(this.langData[this.langCode]['WELCOME_MSG']);
         },
         error: (err) => {
           this.setLoading(false); 

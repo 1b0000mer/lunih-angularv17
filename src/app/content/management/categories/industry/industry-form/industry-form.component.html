@@ -1,1 +1,57 @@
-<p>industry-form works!</p>
+<form cForm class="modal-body" (ngSubmit)="onSubmit()" [formGroup]="form" novalidate>
+
+  <label cLabel for="industryNameEn">{{langData[langCode]['INDUSTRY_NAME_EN']}}</label>
+  <c-input-group class="mb-3 pad-form" *ngIf="form.controls['nameEn'] as ctrl">
+    <input
+      id="industryNameEn"
+      formControlName="nameEn" 
+      cFormControl 
+      placeholder="{{langData[langCode]['INDUSTRY_NAME_EN']}}" 
+      [valid]="
+        ctrl.touched && ctrl.valid 
+        ? undefined 
+        : ctrl.touched && ctrl.invalid 
+        ? false 
+        : undefined"
+      required />
+      
+    <c-form-feedback *ngIf="ctrl.invalid" [valid]="!ctrl.invalid">
+      <ng-container *ngIf="ctrl.errors as errors">
+        <div *ngIf="errors['required']">{{langData[langCode]['CAN_NOT_BE_EMPTY']}}</div>
+      </ng-container>
+    </c-form-feedback>
+  </c-input-group>
+  
+  <label cLabel for="facultyNameLv">{{langData[langCode]['INDUSTRY_NAME_LV']}}</label>
+  <c-input-group class="mb-3 pad-form" *ngIf="form.controls['nameLv'] as ctrl">
+    <input
+      id="facultyNameLv"
+      formControlName="nameLv" 
+      cFormControl
+      placeholder="{{langData[langCode]['INDUSTRY_NAME_LV']}}" 
+      [valid]="
+        ctrl.touched && ctrl.valid 
+        ? undefined 
+        : ctrl.touched && ctrl.invalid 
+        ? false 
+        : undefined"
+      required />
+    
+    <c-form-feedback *ngIf="ctrl.invalid" [valid]="!ctrl.invalid">
+      <ng-container *ngIf="ctrl.errors as errors">
+        <div *ngIf="errors['required']">{{langData[langCode]['CAN_NOT_BE_EMPTY']}}</div>
+      </ng-container>
+    </c-form-feedback>
+  </c-input-group>
+
+  <c-modal-footer class="gap-1">
+    <button cButton color="secondary" (click)="onCancel()">
+      {{langData[langCode]['CANCEL']}}
+    </button>
+
+    <button cButton color="primary" type="submit">
+      <c-spinner [(hidden)]="!isLoading" aria-hidden="true" size="sm" />
+      {{langData[langCode]['CONFIRM']}}
+    </button>
+  </c-modal-footer>
+</form>
