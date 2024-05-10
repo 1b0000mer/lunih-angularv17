@@ -12,7 +12,7 @@
         <c-nav-item>
           <a cNavLink routerLink="/about" routerLinkActive="active">About</a>
         </c-nav-item>
-        <c-nav-item>
+        <c-nav-item *ngIf="checkAuth()">
           <a cNavLink routerLink="/management" routerLinkActive="active">Management</a>
         </c-nav-item>
       </c-navbar-nav>

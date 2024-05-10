@@ -1,6 +1,9 @@
 import { Component, Input, computed, inject } from '@angular/core';
 import { ColorModeService } from '@coreui/angular';
 import { LanguageConstant } from '../../../core/constants/language.constant';
+import { AuthenticateService } from '../../../core/services/auth/authenticate.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-management-header',
@@ -14,6 +17,9 @@ export class ManagementHeaderComponent {
   langCode = localStorage.getItem('language') ?? 'en';
 
   readonly #colorModeService = inject(ColorModeService);
+  readonly authSvc = inject(AuthenticateService);
+  readonly toast = inject(ToastrService);
+  readonly router = inject(Router);
   readonly colorMode = this.#colorModeService.colorMode;
 
   readonly colorModes = [
@@ -45,5 +51,12 @@ export class ManagementHeaderComponent {
 
   getLang() {
     return this.langCode;
+  }
+
+  doLogout(event: Event) {
+    event.preventDefault();
+    this.authSvc.doLogout();
+    this.router.navigate([''])
+    this.toast.info('Bye bye!');
   }
 }

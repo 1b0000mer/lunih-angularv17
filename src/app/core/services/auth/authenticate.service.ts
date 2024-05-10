@@ -39,7 +39,7 @@ export class AuthenticateService {
   doLogout(): void {
     localStorage.removeItem(SystemConstant.CURRENT_INFO);
     localStorage.removeItem(SystemConstant.CURRENT_INFO_GOOGLE);
-    window.location.assign('../');
+    // window.location.assign('../');
   }
 
   // check roles

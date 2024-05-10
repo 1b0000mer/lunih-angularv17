@@ -1,1 +1,62 @@
-<p>program-list works!</p>
+<c-card>
+  <c-card-header>
+    <c-row>
+      <c-col [sm]="6">
+        <c-input-group>
+          <input cFormControl [(ngModel)]="searchValue" (keyup.enter)="getDataPaging(true)"/>
+          <button cButton (click)="getDataPaging(true)">{{langData[langCode]['SEARCH_BTN']}}</button>
+        </c-input-group>
+      </c-col>
+      <c-col [sm]="6" class="d-md-block">
+        <button cButton class="float-end" (click)="openModal(formModal)"><svg cIcon name="cilPlus"></svg>{{langData[langCode]['ADD']}}</button>
+      </c-col>
+    </c-row>
+  </c-card-header>
+  <c-card-body>
+    <table cTable>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">{{langData[langCode]['PROGRAM_NAME']}}</th>
+          <th scope="col">{{langData[langCode]['STUDY_LEVEL']}}</th>
+          <th scope="col">{{langData[langCode]['FACULTY_NAME']}}</th>
+          <th scope="col">{{langData[langCode]['INDUSTRY_NAME']}}</th>
+          <th scope="col" class="text-center">{{langData[langCode]['STATUS']}}</th>
+          <th scope="col" class="text-center">{{langData[langCode]['ACTIONS']}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let program of listProgram.data; let i = index">
+          <td scope="row">{{program.id}}</td>
+          <td>{{ langCode === 'en' ? program.nameEn : program.nameLv}}</td>
+          <td>{{ program.studyLevel }}</td>
+          <td>{{ langCode === 'en' ? program.faculty.nameEn : program.faculty.nameLv }}</td>
+          <td>
+            <c-badge 
+              *ngFor="let industry of program.industryList; let i = index" 
+              class="me-1" color="info"
+            >
+              {{ langCode === 'en' ? industry.nameEn : industry.nameLv }}
+            </c-badge>
+          </td>
+          <td class="text-center">
+            <c-badge (click)="onChangeStatus(program.id!)" class="pe-on" color="success" *ngIf="program.status">{{langData[langCode]['ACTIVE']}}</c-badge>
+            <c-badge (click)="onChangeStatus(program.id!)" class="pe-on" color="danger" *ngIf="!program.status">{{langData[langCode]['INACTIVE']}}</c-badge>
+          </td>
+          <td class="text-center">
+            <button (click)="openModal(formModal, program)" color="success" size="sm" shape="rounded-pill" cButton><svg cIcon name="cilPencil"></svg></button>
+            <div class="vr h-100 mx-2 text-body"></div>
+            <button (click)="onDelete(program.id!)" color="danger" size="sm" shape="rounded-pill" cButton><svg cIcon name="cilTrash"></svg></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </c-card-body>
+  <c-card-footer>
+    <app-table-paginate [pageConfig]="listProgram" (pageChange)="pageChange($event)"/>
+  </c-card-footer>
+</c-card>
+
+<ng-template #formModal>
+  <app-program-form [modalData]="modalData" (closeModal)="closeModal($event)" />
+</ng-template>

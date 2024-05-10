@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthenticateService } from '../../../core/services/auth/authenticate.service';
 
 @Component({
   selector: 'app-main-header',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrl: './main-header.component.scss'
 })
 export class MainHeaderComponent {
+
+  private authSvc = inject(AuthenticateService);
+  
+  checkAuth() {
+    if (this.authSvc.checkRoleAdmin()) return true;
+    return false;
+  }
 
 }

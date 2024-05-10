@@ -52,6 +52,7 @@ import {
   cilPlus,
   cilPencil,
   cilTrash,
+  cilMagnifyingGlass,
 } from '@coreui/icons';
 import { logo } from './icons/logo';
 import { sygnet } from './icons/sygnet';
@@ -130,6 +131,7 @@ export class AppModule {
       cilPlus,
       cilPencil,
       cilTrash,
+      cilMagnifyingGlass,
       cifLv,
       cifUs,
     };

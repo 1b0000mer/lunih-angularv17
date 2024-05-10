@@ -1,1 +1,136 @@
-<p>program-form works!</p>
+<form cForm class="modal-body" (ngSubmit)="onSubmit()" [formGroup]="form" novalidate>
+
+  <!-- PROGRAM_NAME  -->
+  <label cLabel for="programNameEn">{{langData[langCode]['PROGRAM_NAME_EN']}}</label>
+  <c-input-group class="mb-3 pad-form" *ngIf="form.controls['nameEn'] as ctrl">
+    <input
+      id="programNameEn"
+      formControlName="nameEn" 
+      cFormControl 
+      placeholder="{{langData[langCode]['PROGRAM_NAME_EN']}}" 
+      [valid]="
+        ctrl.touched && ctrl.valid 
+        ? undefined 
+        : ctrl.touched && ctrl.invalid 
+        ? false 
+        : undefined"
+      required />
+      
+    <c-form-feedback *ngIf="ctrl.invalid" [valid]="!ctrl.invalid">
+      <ng-container *ngIf="ctrl.errors as errors">
+        <div *ngIf="errors['required']">{{langData[langCode]['CAN_NOT_BE_EMPTY']}}</div>
+      </ng-container>
+    </c-form-feedback>
+  </c-input-group>
+  
+  <label cLabel for="facultyNameLv">{{langData[langCode]['PROGRAM_NAME_LV']}}</label>
+  <c-input-group class="mb-3 pad-form" *ngIf="form.controls['nameLv'] as ctrl">
+    <input
+      id="facultyNameLv"
+      formControlName="nameLv" 
+      cFormControl
+      placeholder="{{langData[langCode]['PROGRAM_NAME_LV']}}" 
+      [valid]="
+        ctrl.touched && ctrl.valid 
+        ? undefined 
+        : ctrl.touched && ctrl.invalid 
+        ? false 
+        : undefined"
+      required />
+    
+    <c-form-feedback *ngIf="ctrl.invalid" [valid]="!ctrl.invalid">
+      <ng-container *ngIf="ctrl.errors as errors">
+        <div *ngIf="errors['required']">{{langData[langCode]['CAN_NOT_BE_EMPTY']}}</div>
+      </ng-container>
+    </c-form-feedback>
+  </c-input-group>
+  
+  <!-- STUDY_LEVEL -->
+  <label cLabel for="programStudyLevel">{{langData[langCode]['CHOOSE_STUDY_LEVEL']}}</label>
+  <c-input-group class="mb-3 pad-form" *ngIf="form.controls['studyLevel'] as ctrl">
+    <select
+      id="programStudyLevel"
+      formControlName="studyLevel"
+      cSelect
+      required
+    >
+      <option value="LEVEL_BACHELOR">{{ langData[langCode]['BACHELOR'] }}</option>
+      <option value="LEVEL_MASTER">{{ langData[langCode]['MASTER'] }}</option>
+      <option value="LEVEL_DOCTORAL">{{ langData[langCode]['DOCTORAL'] }}</option>
+    </select>
+    
+    <c-form-feedback *ngIf="ctrl.invalid" [valid]="!ctrl.invalid">
+      <ng-container *ngIf="ctrl.errors as errors">
+        <div *ngIf="errors['required']">{{langData[langCode]['CAN_NOT_BE_EMPTY']}}</div>
+      </ng-container>
+    </c-form-feedback>
+  </c-input-group>
+
+  <!-- FACULTY -->
+  <label cLabel for="programFaculty">{{langData[langCode]['CHOOSE_FACULTY']}}</label>
+  <c-input-group class="mb-3 pad-form" *ngIf="form.controls['facultyID'] as ctrl">
+    <select
+      id="programFaculty"
+      formControlName="facultyID"
+      cSelect
+      required
+    >
+      <option *ngFor="let faculty of listFaculty" [value]="faculty.id">{{ langCode === 'en' ? faculty.nameEn : faculty.nameLv }}</option>
+    </select>
+    
+    <c-form-feedback *ngIf="ctrl.invalid" [valid]="!ctrl.invalid">
+      <ng-container *ngIf="ctrl.errors as errors">
+        <div *ngIf="errors['required']">{{langData[langCode]['CAN_NOT_BE_EMPTY']}}</div>
+      </ng-container>
+    </c-form-feedback>
+  </c-input-group>
+
+  <!-- INDUSTRYLIST -->
+  <div class="mb-3 d-grid">
+    <button cButton variant="outline" color="info" (click)="visible = !visible">{{langData[langCode]['CHOOSE_INDUSTRY']}}</button>
+    <div [visible]="visible" cCollapse>
+      <c-card class="mt-3">
+        <c-card-header>
+          <c-row>
+            <c-input-group>
+              <input cFormControl [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" (keydown.enter)="fetchIndustry()"/>
+              <button cButton variant="outline" color="secondary" (click)="fetchIndustry()"><svg cIcon name="cilMagnifyingGlass"></svg></button>
+            </c-input-group>
+          </c-row>
+        </c-card-header>
+        <c-card-body>
+          <table cTable>
+            <thead>
+              <tr>
+                <th scope="col">{{langCode === 'en' ? langData[langCode]['INDUSTRY_NAME_EN'] : langData[langCode]['INDUSTRY_NAME_LV']}}</th>
+                <th scope="col">#</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let industry of listIndustry; let i = index">
+                <td>
+                  <c-form-check>
+                    <input [checked]="isChecked(industry.id!)" (change)="toggleChecked(industry.id!)" cFormCheckInput [id]="'industry'+i" type="checkbox" />
+                    <label cFormCheckLabel [for]="'industry'+i">{{langCode === 'en' ? industry.nameEn : industry.nameLv}}</label>
+                  </c-form-check>
+                </td>
+                <th scope="row">{{industry.id}}</th>
+              </tr>
+            </tbody>
+          </table>
+        </c-card-body>
+      </c-card>
+    </div>
+  </div>
+
+  <c-modal-footer class="gap-1">
+    <button cButton color="secondary" (click)="onCancel()">
+      {{langData[langCode]['CANCEL']}}
+    </button>
+
+    <button cButton color="primary" type="submit">
+      <c-spinner [(hidden)]="!isLoading" aria-hidden="true" size="sm" />
+      {{langData[langCode]['CONFIRM']}}
+    </button>
+  </c-modal-footer>
+</form>
