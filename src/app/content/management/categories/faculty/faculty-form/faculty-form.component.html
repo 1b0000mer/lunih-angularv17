@@ -1,12 +1,12 @@
 <form cForm class="modal-body" (ngSubmit)="onSubmit()" [formGroup]="form" novalidate>
 
-  <label cLabel for="facultyNameEn">FACULTY_NAME_EN</label>
+  <label cLabel for="facultyNameEn">{{langData[langCode]['FACULTY_NAME_EN']}}</label>
   <c-input-group class="mb-3 pad-form" *ngIf="form.controls['nameEn'] as ctrl">
     <input
       id="facultyNameEn"
       formControlName="nameEn" 
       cFormControl 
-      placeholder="FACULTY_NAME_EN" 
+      placeholder="{{langData[langCode]['FACULTY_NAME_EN']}}" 
       [valid]="
         ctrl.touched && ctrl.valid 
         ? undefined 
@@ -17,18 +17,18 @@
       
     <c-form-feedback *ngIf="ctrl.invalid" [valid]="!ctrl.invalid">
       <ng-container *ngIf="ctrl.errors as errors">
-        <div *ngIf="errors['required']">CAN_NOT_BE_EMPTY</div>
+        <div *ngIf="errors['required']">{{langData[langCode]['CAN_NOT_BE_EMPTY']}}</div>
       </ng-container>
     </c-form-feedback>
   </c-input-group>
   
-  <label cLabel for="facultyNameLv">FACULTY_NAME_LV</label>
+  <label cLabel for="facultyNameLv">{{langData[langCode]['FACULTY_NAME_LV']}}</label>
   <c-input-group class="mb-3 pad-form" *ngIf="form.controls['nameLv'] as ctrl">
     <input
       id="facultyNameLv"
       formControlName="nameLv" 
       cFormControl
-      placeholder="FACULTY_NAME_LV" 
+      placeholder="{{langData[langCode]['FACULTY_NAME_LV']}}" 
       [valid]="
         ctrl.touched && ctrl.valid 
         ? undefined 
@@ -39,19 +39,19 @@
     
     <c-form-feedback *ngIf="ctrl.invalid" [valid]="!ctrl.invalid">
       <ng-container *ngIf="ctrl.errors as errors">
-        <div *ngIf="errors['required']">CAN_NOT_BE_EMPTY</div>
+        <div *ngIf="errors['required']">{{langData[langCode]['CAN_NOT_BE_EMPTY']}}</div>
       </ng-container>
     </c-form-feedback>
   </c-input-group>
 
   <c-modal-footer class="gap-1">
     <button cButton color="secondary" (click)="onCancel()">
-      CANCEL
+      {{langData[langCode]['CANCEL']}}
     </button>
 
     <button cButton color="primary" type="submit">
       <c-spinner [(hidden)]="!isLoading" aria-hidden="true" size="sm" />
-      CONFIRM
+      {{langData[langCode]['CONFIRM']}}
     </button>
   </c-modal-footer>
 </form>

@@ -6,6 +6,7 @@ import { FacultyService } from '../../../../../core/services/management/categori
 import { ToastrService } from 'ngx-toastr';
 import { SystemConstant } from '../../../../../core/constants/system.constant';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { LanguageConstant } from '../../../../../core/constants/language.constant';
 
 @Component({
   selector: 'app-faculty-list',
@@ -13,6 +14,9 @@ import { NzModalService } from 'ng-zorro-antd/modal';
   styleUrl: './faculty-list.component.scss'
 })
 export class FacultyListComponent implements OnInit {
+
+  langData: Record<string, Record<string, string>> = LanguageConstant;
+  langCode = localStorage.getItem('language') ?? 'en';
 
   modalData: ModalData<Faculty> = new ModalData<Faculty>();
   listFaculty: Paginate<Faculty> = new Paginate<Faculty>();
@@ -52,12 +56,12 @@ export class FacultyListComponent implements OnInit {
   }
 
   onChangeStatus(id: number) {
-    if (confirm('CONFIRM_CHANGE_STATUS')) {
+    if (confirm(this.langData[this.langCode]['CONFIRM_CHANGE_STATUS'])) {
       this.facultySvc.changeStatus(id)
       .subscribe({
-        error: (err) => err.message,
+        error: (err) => this.toast.error(err.message),
         complete: () => {
-          this.toast.success('MSG_CHANGE_DONE');
+          this.toast.success(this.langData[this.langCode]['MSG_CHANGE_DONE']);
           this.getDataPaging();
         }
       })
@@ -65,12 +69,12 @@ export class FacultyListComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    if (confirm('CONFIRM_DELETE')) {
+    if (confirm(this.langData[this.langCode]['CONFIRM_DELETE'])) {
       this.facultySvc.delete(id)
       .subscribe({
-        error: (err) => err.message,
+        error: (err) => this.toast.error(err.message),
         complete: () => {
-          this.toast.success('MSG_UPDATE_DONE'); 
+          this.toast.success(this.langData[this.langCode]['MSG_UPDATE_DONE']); 
           this.getDataPaging();
         }
       })
@@ -87,7 +91,7 @@ export class FacultyListComponent implements OnInit {
 
     this.nzModalSvc.create({
       nzStyle: {top: '8rem'},
-      nzTitle: (data?.id ? 'EDIT_TITLE' : 'ADD_TITLE'),
+      nzTitle: (data?.id ? this.langData[this.langCode]['EDIT_TITLE'] : this.langData[this.langCode]['ADD_TITLE']),
       nzContent: template,
       nzFooter: null,
       nzMaskClosable: false

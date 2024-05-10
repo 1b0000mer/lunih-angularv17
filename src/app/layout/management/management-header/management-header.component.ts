@@ -1,5 +1,6 @@
 import { Component, Input, computed, inject } from '@angular/core';
 import { ColorModeService } from '@coreui/angular';
+import { LanguageConstant } from '../../../core/constants/language.constant';
 
 @Component({
   selector: 'app-management-header',
@@ -8,6 +9,9 @@ import { ColorModeService } from '@coreui/angular';
 })
 export class ManagementHeaderComponent {
   @Input() sidebarId: string = 'sidebar1';
+
+  langData: Record<string, Record<string, string>> = LanguageConstant;
+  langCode = localStorage.getItem('language') ?? 'en';
 
   readonly #colorModeService = inject(ColorModeService);
   readonly colorMode = this.#colorModeService.colorMode;
@@ -34,10 +38,12 @@ export class ManagementHeaderComponent {
   };
 
   setLang(langName: string) {
+    this.langCode = langName;
     localStorage.setItem('language', langName);
+    window.location.reload();
   }
 
   getLang() {
-    return localStorage.getItem('language') ?? 'en';
+    return this.langCode;
   }
 }

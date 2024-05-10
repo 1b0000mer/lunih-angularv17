@@ -16,6 +16,7 @@ import {
   DropdownItemDirective,
   DropdownMenuDirective,
   DropdownToggleDirective,
+  FooterModule,
   HeaderNavComponent,
   HeaderTogglerDirective,
   NavItemComponent,
@@ -83,6 +84,7 @@ import {
     ProgressBarDirective,
     ProgressComponent,
     NgStyle,
+    FooterModule
   ]
 })
 export class ManagementLayoutModule { }

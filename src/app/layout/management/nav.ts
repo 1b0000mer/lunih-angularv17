@@ -1,59 +1,63 @@
 import { INavData } from '@coreui/angular';
+import { LanguageConstant } from '../../core/constants/language.constant';
+
+const langData: Record<string, Record<string, string>> = LanguageConstant;
+const langCode = localStorage.getItem('language') ?? 'en';
 
 export const navItems: INavData[] = [
   {
-    name: 'DASHBOARD',
+    name: langData[langCode]['DASHBOARD'],
     url: '/management/dashboard',
     iconComponent: { name: 'cilSpeedometer' }
   },
   {
     title: true,
-    name: 'CORE'
+    name: langData[langCode]['CORE']
   },
   {
-    name: 'CATEGORIES',
+    name: langData[langCode]['CATEGORIES'],
     url: '/management/categories',
     iconComponent: { name: 'cilGrid' },
     children: [
       {
-        name: 'FACULTY',
+        name: langData[langCode]['FACULTY'],
         url: '/management/categories/faculty',
         iconComponent: { name: 'cilInstitution' },
       },
       {
-        name: 'INDUSTRY',
+        name: langData[langCode]['INDUSTRY'],
         url: '/management/categories/industry',
         iconComponent: { name: 'cilSitemap' },
       },
       {
-        name: 'PROGRAM',
+        name: langData[langCode]['PROGRAM'],
         url: '/management/categories/program',
         iconComponent: { name: 'cilBook' },
       },
     ]
   },
   {
-    name: 'USER_ACCOUNT',
+    name: langData[langCode]['USER_ACCOUNT'],
     url: '/management/users',
     iconComponent: { name: 'cilGroup' },
     children: [
       {
-        name: 'STUDENT',
+        name: langData[langCode]['STUDENT'],
         url: '/management/users/student',
         iconComponent: { name: 'cilEducation' },
       },
       {
-        name: 'UNIVERSITY',
+        name: langData[langCode]['UNIVERSITY'],
         url: '/management/users/university',
         iconComponent: { name: 'cilInstitution' },
       },
       {
-        name: 'COMPANY',
+        name: langData[langCode]['COMPANY'],
         url: '/management/users/company',
         iconComponent: { name: 'cilFactory' },
       },
       {
-        name: 'ADMIN',
+        name: langData[langCode]['ADMIN'],
         url: '/management/users/administrator',
         iconComponent: { name: 'cilUser' },
       },
@@ -61,10 +65,10 @@ export const navItems: INavData[] = [
   },
   {
     title: true,
-    name: 'FUNCTIONS'
+    name: langData[langCode]['FUNCTIONS']
   },
   {
-    name: 'APPROVE_STUDENT',
+    name: langData[langCode]['APPROVE_STUDENT'],
     url: '/management/users/student/approve',
     iconComponent: { name: 'cilCheck' }
   },

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './management-footer.component.scss'
 })
 export class ManagementFooterComponent {
-
+  year = new Date().getFullYear();
 }

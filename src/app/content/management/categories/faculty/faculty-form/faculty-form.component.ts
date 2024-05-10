@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FacultyService } from '../../../../../core/services/management/categories/faculty/faculty.service';
 import { ToastrService } from 'ngx-toastr';
 import { SystemConstant } from '../../../../../core/constants/system.constant';
+import { LanguageConstant } from '../../../../../core/constants/language.constant';
 
 @Component({
   selector: 'app-faculty-form',
@@ -15,6 +16,9 @@ export class FacultyFormComponent implements OnInit {
 
   @Input() modalData!: ModalData<Faculty>;
   @Output() closeModal: EventEmitter<boolean> = new EventEmitter();
+
+  langData: Record<string, Record<string, string>> = LanguageConstant;
+  langCode = localStorage.getItem('language') ?? 'en';
 
   form!: FormGroup;
   isLoading: boolean = false;
@@ -58,7 +62,7 @@ export class FacultyFormComponent implements OnInit {
           },
           complete: () => {
             this.setLoading(false);
-            this.toast.success('MSG_UPDATE_DONE');
+            this.toast.success(this.langData[this.langCode]['MSG_UPDATE_DONE']);
             this.closeModal.emit(true);
           }
         });
@@ -71,7 +75,7 @@ export class FacultyFormComponent implements OnInit {
           },
           complete: () => {
             this.setLoading(false);
-            this.toast.success('MSG_CREATE_DONE');
+            this.toast.success(this.langData[this.langCode]['MSG_CREATE_DONE']);
             this.closeModal.emit(true);
           }
         });
