@@ -1,6 +1,15 @@
 # LunihAngularv17
-
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+
+## Test user
+
+| User     | Password | Role  |
+|----------|----------|-------|
+| admin@admin.com    | 123456| admin |
+| student@student.com    | 123456| student |
+| university@university.com    | 123456| university  |
+| company@company.com    | 123456 | company  |
+
 
 ## Development server
 
