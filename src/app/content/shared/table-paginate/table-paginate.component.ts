@@ -15,8 +15,8 @@ export class TablePaginateComponent {
     this.refreshPage();
   }
 
-  changedNumOfItem(numOfItem: string) {
-    this.pageConfig.limit = Number.parseInt(numOfItem, 10);
+  changedNumOfItem(event: Event) {
+    this.pageConfig.limit = Number.parseInt((event.target as HTMLSelectElement).value, 10);
     this.pageConfig.currentPage = 1;
     this.refreshPage();
   }
