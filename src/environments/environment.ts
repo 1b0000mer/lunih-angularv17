@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
   
   //for hosting
-  // serverUrl: 'https://lunih-lunih-3a16d800.koyeb.app/',
-  serverUrl: 'http://localhost:4444/',
+  serverUrl: 'https://lunih-lunih-3a16d800.koyeb.app/',
+  // serverUrl: 'http://localhost:4444/',
 };
